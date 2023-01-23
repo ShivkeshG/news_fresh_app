@@ -7,17 +7,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsfresh.databinding.ItemArticleBinding
+import com.example.newsfresh.databinding.RvItemArticleBinding
 import com.example.newsfresh.models.Article
 
 class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
-    inner class ArticleViewHolder(private val binding: ItemArticleBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ArticleViewHolder(private val binding: RvItemArticleBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(article: Article) {
             binding.apply {
                 Glide.with(itemView).load(article.urlToImage).into(ivArticleImage)
                 tvSource.text = article.source?.name
                 tvTitle.text = article.title
-                tvDescription.text = article.description
+//                tvDescription.text = article.description
                 tvPublishedAt.text = article.publishedAt
             }
             itemView.setOnClickListener {
@@ -41,7 +42,7 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         return ArticleViewHolder(
-            ItemArticleBinding.inflate(
+            RvItemArticleBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
